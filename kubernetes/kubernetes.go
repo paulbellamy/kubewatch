@@ -6,14 +6,15 @@ import (
 	"time"
 
 	log "github.com/Sirupsen/logrus"
-	"k8s.io/kubernetes/pkg/api"
-	unversionedAPI "k8s.io/kubernetes/pkg/api/unversioned"
-	"k8s.io/kubernetes/pkg/client/cache"
-	"k8s.io/kubernetes/pkg/client/unversioned"
-	"k8s.io/kubernetes/pkg/client/unversioned/clientcmd"
-	"k8s.io/kubernetes/pkg/fields"
-	"k8s.io/kubernetes/pkg/labels"
-	"k8s.io/kubernetes/pkg/util/wait"
+	"github.com/pkg/errors"
+
+	k8sclient "k8s.io/client-go/1.5/kubernetes"
+	v1core "k8s.io/client-go/1.5/kubernetes/typed/core/v1"
+	api "k8s.io/client-go/1.5/pkg/api"
+	v1 "k8s.io/client-go/1.5/pkg/api/v1"
+	"k8s.io/client-go/1.5/pkg/fields"
+	"k8s.io/client-go/1.5/tools/cache"
+	"k8s.io/client-go/1.5/tools/clientcmd"
 )
 
 // Client keeps track of running kubernetes pods and services
@@ -23,22 +24,10 @@ type Client interface {
 }
 
 type client struct {
-	quit             chan struct{}
-	resyncPeriod     time.Duration
-	client           *unversioned.Client
-	extensionsClient *unversioned.ExtensionsClient
-	podStore         *cache.StoreToPodLister
-}
-
-// runReflectorUntil is equivalent to cache.Reflector.RunUntil, but it also logs
-// errors, which cache.Reflector.RunUntil simply ignores
-func runReflectorUntil(r *cache.Reflector, resyncPeriod time.Duration, stopCh <-chan struct{}) {
-	loggingListAndWatch := func() {
-		if err := r.ListAndWatch(stopCh); err != nil {
-			log.Errorf("Kubernetes reflector: %v", err)
-		}
-	}
-	go wait.Until(loggingListAndWatch, resyncPeriod, stopCh)
+	quit         chan struct{}
+	resyncPeriod time.Duration
+	client       v1core.CoreInterface
+	store        cache.Store
 }
 
 // NewClient returns a usable Client. Don't forget to Close it.
@@ -50,41 +39,46 @@ func NewClient(filename string, resyncPeriod time.Duration) (Client, error) {
 	kubeConfig := clientcmd.NewNonInteractiveDeferredLoadingClientConfig(loadingRules, configOverrides)
 	config, err := kubeConfig.ClientConfig()
 	if err != nil {
-		return nil, err
+		return nil, errors.Wrap(err, "loading config")
 	}
-	c, err := unversioned.New(config)
+	config.ContentConfig.GroupVersion = &api.Unversioned
+
+	c, err := k8sclient.NewForConfig(config)
 	if err != nil {
-		return nil, err
+		return nil, errors.Wrap(err, "starting corev1 client")
 	}
+	core := c.Core()
 
-	result := &client{
-		quit:         make(chan struct{}),
+	// This will hold the downstream state, as we know it.
+	store := cache.NewStore(cache.DeletionHandlingMetaNamespaceKeyFunc)
+
+	// Create the controller and run it until we close stop.
+	quit := make(chan struct{})
+	cache.NewReflector(
+		cache.NewListWatchFromClient(
+			core.GetRESTClient(),
+			"pods",
+			"",
+			fields.Everything(),
+		),
+		&v1.Pod{},
+		store,
+		resyncPeriod,
+	).RunUntil(quit)
+
+	return &client{
+		quit:         quit,
 		resyncPeriod: resyncPeriod,
-		client:       c,
-	}
-
-	result.podStore = &cache.StoreToPodLister{
-		Indexer: result.setupStore(c, "pods", &api.Pod{}).(cache.Indexer),
-	}
-
-	return result, nil
-}
-
-func (c *client) setupStore(kclient cache.Getter, resource string, itemType interface{}) cache.Store {
-	lw := cache.NewListWatchFromClient(kclient, resource, api.NamespaceAll, fields.Everything())
-	store := cache.NewStore(cache.MetaNamespaceKeyFunc)
-	runReflectorUntil(cache.NewReflector(lw, itemType, store, c.resyncPeriod), c.resyncPeriod, c.quit)
-	return store
+		client:       core,
+		store:        store,
+	}, nil
 }
 
 // UpdateImage kills all pods using a different version of this image, so that
 // they will be re-created with the new one.
 func (c *client) UpdateImage(name, version string) error {
-	list, err := c.podStore.List(labels.Everything())
-	if err != nil {
-		return err
-	}
-	for _, pod := range list {
+	for _, podInterface := range c.store.List() {
+		pod := podInterface.(*v1.Pod)
 		containers := pod.Spec.Containers
 		found := false
 		for _, c := range containers {
@@ -98,7 +92,7 @@ func (c *client) UpdateImage(name, version string) error {
 			if err := c.client.Pods(pod.ObjectMeta.Namespace).Delete(pod.ObjectMeta.Name, nil); err != nil {
 				return err
 			}
-			logDeployment(name, version, pod.TypeMeta, pod.ObjectMeta)
+			logDeployment(name, version, pod.TypeMeta.Kind, pod.ObjectMeta.Namespace, pod.ObjectMeta.Name)
 		}
 	}
 	return nil
@@ -112,10 +106,10 @@ func parseImage(image string) (name, version string) {
 	return parts[0], "latest"
 }
 
-func logDeployment(image, version string, typeMeta unversionedAPI.TypeMeta, objectMeta api.ObjectMeta) {
-	itemName := fmt.Sprintf("%s/%s", objectMeta.Namespace, objectMeta.Name)
-	if typeMeta.Kind != "" {
-		itemName = typeMeta.Kind + ":" + itemName
+func logDeployment(image, version, kind, namespace, name string) {
+	itemName := fmt.Sprintf("%s/%s", namespace, name)
+	if kind != "" {
+		itemName = kind + ":" + itemName
 	}
 	log.Infof("Deployed: %s:%s -> %s", image, version, itemName)
 }

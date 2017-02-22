@@ -1,6 +1,14 @@
 {
-    "memo": "596305911a4297bf3e8e5c3c5208679503f7c8a1f77dfbd23e2207f9a71f77a4",
+    "memo": "e5159c2cfa5cc503a07db7ea0290e2d46d429bedcd8c1ae02b62095814488e86",
     "projects": [
+        {
+            "name": "cloud.google.com/go",
+            "version": "v0.6.0",
+            "revision": "c116c7972ec94f148459a304d07a67ecbc770d4b",
+            "packages": [
+                "compute/metadata"
+            ]
+        },
         {
             "name": "github.com/Azure/go-ansiterm",
             "branch": "master",
@@ -51,6 +59,25 @@
             ]
         },
         {
+            "name": "github.com/coreos/go-oidc",
+            "branch": "master",
+            "revision": "f828b1fc9b58b59bd70ace766bfc190216b58b01",
+            "packages": [
+                "jose",
+                "oauth2",
+                "oidc"
+            ]
+        },
+        {
+            "name": "github.com/coreos/pkg",
+            "version": "v3",
+            "revision": "3ac0863d7acf3bc44daf49afef8919af12f704ef",
+            "packages": [
+                "health",
+                "timeutil"
+            ]
+        },
+        {
             "name": "github.com/davecgh/go-spew",
             "version": "v1.1.0",
             "revision": "346938d642f2ec3594ed81d874461961cd0faa76",
@@ -98,10 +125,10 @@
         },
         {
             "name": "github.com/emicklei/go-restful",
-            "version": "2.2.0",
-            "revision": "cf834cf8da5b681af81bde6fa32304e6ce8eec71",
+            "version": "v1.2",
+            "revision": "777bb3f19bcafe2575ffb2a3e46af92509ae9594",
             "packages": [
-                "."
+                "swagger"
             ]
         },
         {
@@ -170,9 +197,25 @@
             ]
         },
         {
+            "name": "github.com/golang/protobuf",
+            "branch": "master",
+            "revision": "69b215d01a5606c843240eab4937eab3acee6530",
+            "packages": [
+                "proto"
+            ]
+        },
+        {
             "name": "github.com/google/gofuzz",
             "branch": "master",
             "revision": "44d81051d367757e1c7c6a5a86423ece9afcf63c",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/googleapis/gax-go",
+            "branch": "master",
+            "revision": "da06d194a00e19ce00d9011a13931c3f6f6887c7",
             "packages": [
                 "."
             ]
@@ -197,6 +240,14 @@
             "name": "github.com/imdario/mergo",
             "version": "0.2.2",
             "revision": "3e95a51e0639b4cf372f2ccf74c86749d747fbdc",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/jonboulle/clockwork",
+            "version": "v0.1.0",
+            "revision": "2eee05ed794112d45db504eb05aa693efd2b8b09",
             "packages": [
                 "."
             ]
@@ -236,6 +287,14 @@
             ]
         },
         {
+            "name": "github.com/pkg/errors",
+            "version": "v0.8.0",
+            "revision": "645ef00459ed84a119197bfb8d8205042c6df63d",
+            "packages": [
+                "."
+            ]
+        },
+        {
             "name": "github.com/spf13/pflag",
             "branch": "master",
             "revision": "9ff6c6923cfffbcd502984b8e0c80539a94968b7",
@@ -267,7 +326,18 @@
                 "context",
                 "context/ctxhttp",
                 "http2",
-                "idna"
+                "http2/hpack",
+                "idna",
+                "trace"
+            ]
+        },
+        {
+            "name": "golang.org/x/oauth2",
+            "branch": "master",
+            "revision": "b9780ec78894ab900c062d58ee3076cd9b2a4501",
+            "packages": [
+                ".",
+                "google"
             ]
         },
         {
@@ -286,6 +356,24 @@
             "packages": [
                 "unicode/norm",
                 "width"
+            ]
+        },
+        {
+            "name": "google.golang.org/appengine",
+            "version": "v1.0.0",
+            "revision": "150dc57a1b433e64154302bdc40b6bb8aefa313a",
+            "packages": [
+                ".",
+                "urlfetch"
+            ]
+        },
+        {
+            "name": "google.golang.org/grpc",
+            "version": "v1.0.5",
+            "revision": "708a7f9f3283aa2d4f6132d287d78683babe55c8",
+            "packages": [
+                ".",
+                "codes"
             ]
         },
         {
@@ -309,20 +397,18 @@
             "branch": "master",
             "revision": "0f8a3af747f81547246d79ca00c20af330868fa6",
             "packages": [
-                "pkg/apis/meta/v1",
                 "pkg/fields"
             ]
         },
         {
             "name": "k8s.io/client-go",
-            "version": "v2.0.0",
-            "revision": "e121606b0d09b2e1c467183ee46217fa85a6b672",
+            "version": "v1.5.1",
+            "revision": "1195e3a8ee1a529d53eed7c624527a68555ddf1f",
             "packages": [
-                "kubernetes/typed/core/v1",
-                "pkg/api/v1",
-                "rest",
-                "tools/cache",
-                "tools/clientcmd"
+                "1.5/kubernetes",
+                "1.5/kubernetes/typed/core/v1",
+                "1.5/tools/cache",
+                "1.5/tools/clientcmd"
             ]
         }
     ]

@@ -2,6 +2,9 @@
     "dependencies": {
         "github.com/Sirupsen/logrus": {
             "branch": "master"
+        },
+        "k8s.io/client-go": {
+            "version": "^1.5.0"
         }
     }
 }
