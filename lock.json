@@ -1,0 +1,329 @@
+{
+    "memo": "596305911a4297bf3e8e5c3c5208679503f7c8a1f77dfbd23e2207f9a71f77a4",
+    "projects": [
+        {
+            "name": "github.com/Azure/go-ansiterm",
+            "branch": "master",
+            "revision": "fa152c58bc15761d0200cb75fe958b89a9d4888e",
+            "packages": [
+                ".",
+                "winterm"
+            ]
+        },
+        {
+            "name": "github.com/Microsoft/go-winio",
+            "version": "v0.3.8",
+            "revision": "fff283ad5116362ca252298cfc9b95828956d85d",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/PuerkitoBio/purell",
+            "version": "v1.1.0",
+            "revision": "0bcb03f4b4d0a9428594752bd2a3b9aa0a9d4bd4",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/PuerkitoBio/urlesc",
+            "branch": "master",
+            "revision": "5bd2802263f21d8788851d5305584c82a5c75d7e",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/Sirupsen/logrus",
+            "branch": "master",
+            "revision": "3ec0642a7fb6488f65b06f9040adc67e3990296a",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/blang/semver",
+            "version": "v3.5.0",
+            "revision": "b38d23b8782a487059e8fc8773e9a5b228a77cb6",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/davecgh/go-spew",
+            "version": "v1.1.0",
+            "revision": "346938d642f2ec3594ed81d874461961cd0faa76",
+            "packages": [
+                "spew"
+            ]
+        },
+        {
+            "name": "github.com/docker/distribution",
+            "version": "v2.6.0",
+            "revision": "325b0804fef3a66309d962357aac3c2ce3f4d329",
+            "packages": [
+                "reference"
+            ]
+        },
+        {
+            "name": "github.com/docker/docker",
+            "version": "v1.13.1",
+            "revision": "092cba3727bb9b4a2f0e922cd6c0f93ea270e363",
+            "packages": [
+                "api/types/swarm",
+                "opts",
+                "pkg/archive",
+                "pkg/fileutils",
+                "pkg/homedir",
+                "pkg/jsonmessage",
+                "pkg/stdcopy"
+            ]
+        },
+        {
+            "name": "github.com/docker/go-connections",
+            "version": "v0.2.1",
+            "revision": "990a1a1a70b0da4c4cb70e117971a4f0babfbf1a",
+            "packages": [
+                "nat"
+            ]
+        },
+        {
+            "name": "github.com/docker/go-units",
+            "version": "v0.3.1",
+            "revision": "f2d77a61e3c169b43402a0a1e84f06daf29b8190",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/emicklei/go-restful",
+            "version": "2.2.0",
+            "revision": "cf834cf8da5b681af81bde6fa32304e6ce8eec71",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/fsouza/go-dockerclient",
+            "branch": "master",
+            "revision": "54fbd1ff920ca5fd5ec53068d513c14c3a25bba9",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/ghodss/yaml",
+            "branch": "master",
+            "revision": "04f313413ffd65ce25f2541bfd2b2ceec5c0908c",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/go-openapi/jsonpointer",
+            "branch": "master",
+            "revision": "779f45308c19820f1a69e9a4cd965f496e0da10f",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/go-openapi/jsonreference",
+            "branch": "master",
+            "revision": "36d33bfe519efae5632669801b180bf1a245da3b",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/go-openapi/spec",
+            "branch": "master",
+            "revision": "02fb9cd3430ed0581e0ceb4804d5d4b3cc702694",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/go-openapi/swag",
+            "branch": "master",
+            "revision": "d5f8ebc3b1c55a4cf6489eeae7354f338cfe299e",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/gogo/protobuf",
+            "version": "v0.3",
+            "revision": "909568be09de550ed094403c2bf8a261b5bb730a",
+            "packages": [
+                "proto",
+                "sortkeys"
+            ]
+        },
+        {
+            "name": "github.com/golang/glog",
+            "branch": "master",
+            "revision": "23def4e6c14b4da8ac2ed8007337bc5eb5007998",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/google/gofuzz",
+            "branch": "master",
+            "revision": "44d81051d367757e1c7c6a5a86423ece9afcf63c",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/hashicorp/go-cleanhttp",
+            "branch": "master",
+            "revision": "3573b8b52aa7b37b9358d966a898feb387f62437",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/howeyc/gopass",
+            "branch": "master",
+            "revision": "bf9dde6d0d2c004a008c27aaee91170c786f6db8",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/imdario/mergo",
+            "version": "0.2.2",
+            "revision": "3e95a51e0639b4cf372f2ccf74c86749d747fbdc",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/juju/ratelimit",
+            "branch": "master",
+            "revision": "77ed1c8a01217656d2080ad51981f6e99adaa177",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/mailru/easyjson",
+            "branch": "master",
+            "revision": "d89c33ca38a143e5190297c6252fcc75f01694ed",
+            "packages": [
+                "jlexer",
+                "jwriter"
+            ]
+        },
+        {
+            "name": "github.com/opencontainers/runc",
+            "version": "v0.1.1",
+            "revision": "baf6536d6259209c3edfa2b22237af82942d3dfa",
+            "packages": [
+                "libcontainer/system",
+                "libcontainer/user"
+            ]
+        },
+        {
+            "name": "github.com/pborman/uuid",
+            "version": "v1.0",
+            "revision": "a97ce2ca70fa5a848076093f05e639a89ca34d06",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/spf13/pflag",
+            "branch": "master",
+            "revision": "9ff6c6923cfffbcd502984b8e0c80539a94968b7",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/ugorji/go",
+            "branch": "master",
+            "revision": "c88ee250d0221a57af388746f5cf03768c21d6e2",
+            "packages": [
+                "codec"
+            ]
+        },
+        {
+            "name": "golang.org/x/crypto",
+            "branch": "master",
+            "revision": "453249f01cfeb54c3d549ddb75ff152ca243f9d8",
+            "packages": [
+                "ssh/terminal"
+            ]
+        },
+        {
+            "name": "golang.org/x/net",
+            "branch": "master",
+            "revision": "6b27048ae5e6ad1ef927e72e437531493de612fe",
+            "packages": [
+                "context",
+                "context/ctxhttp",
+                "http2",
+                "idna"
+            ]
+        },
+        {
+            "name": "golang.org/x/sys",
+            "branch": "master",
+            "revision": "b699b7032584f0953262cb2788a0ca19bb494703",
+            "packages": [
+                "unix",
+                "windows"
+            ]
+        },
+        {
+            "name": "golang.org/x/text",
+            "branch": "master",
+            "revision": "767daa157b4d460bba02409ff856ddeeb8e76ab7",
+            "packages": [
+                "unicode/norm",
+                "width"
+            ]
+        },
+        {
+            "name": "gopkg.in/inf.v0",
+            "version": "v0.9.0",
+            "revision": "3887ee99ecf07df5b447e9b00d9c0b2adaa9f3e4",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "gopkg.in/yaml.v2",
+            "branch": "v2",
+            "revision": "a3f3340b5840cee44f372bddb5880fcbc419b46a",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "k8s.io/apimachinery",
+            "branch": "master",
+            "revision": "0f8a3af747f81547246d79ca00c20af330868fa6",
+            "packages": [
+                "pkg/apis/meta/v1",
+                "pkg/fields"
+            ]
+        },
+        {
+            "name": "k8s.io/client-go",
+            "version": "v2.0.0",
+            "revision": "e121606b0d09b2e1c467183ee46217fa85a6b672",
+            "packages": [
+                "kubernetes/typed/core/v1",
+                "pkg/api/v1",
+                "rest",
+                "tools/cache",
+                "tools/clientcmd"
+            ]
+        }
+    ]
+}
