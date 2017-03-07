@@ -1,0 +1,24 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: kubewatch
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: kubewatch
+    spec:
+      containers:
+      - name: kubewatch
+        image: paulbellamy/kubewatch:latest
+        imagePullPolicy: IfNotPresent
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - name: docker-sock
+          mountPath: /var/run/docker.sock
+      volumes:
+      - name: docker-sock
+        hostPath:
+          path: /var/run/docker.sock
