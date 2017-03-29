@@ -16,3 +16,7 @@ Simply run on your minikube vm with:
 
 Then everytime you do a `docker build`, your images will be
 auto-deployed.
+
+## Note
+
+This will *not* currently work for any multi-host kubernetes setup. It is assumed to be running on minikube.
